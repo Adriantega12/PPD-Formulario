@@ -29,11 +29,16 @@ LIBS += -lopencv_core
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    foot.cpp
+    foot.cpp \
+    customgview.cpp \
+    footform.cpp
 
 HEADERS += \
         mainwindow.h \
-    foot.h
+    foot.h \
+    customgview.h \
+    footform.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    footform.ui

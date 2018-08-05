@@ -133,7 +133,7 @@
     </property>
     <layout class="QHBoxLayout" name="feetFormLO">
      <item>
-      <widget class="QGraphicsView" name="leftFootGV"/>
+      <widget class="CustomGView" name="leftFootGV"/>
      </item>
      <item>
       <layout class="QFormLayout" name="rightFootLO"/>
@@ -142,7 +142,7 @@
       <layout class="QFormLayout" name="leftFootLO"/>
      </item>
      <item>
-      <widget class="QGraphicsView" name="rightFootGV"/>
+      <widget class="CustomGView" name="rightFootGV"/>
      </item>
     </layout>
    </widget>
@@ -192,6 +192,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CustomGView</class>
+   <extends>QGraphicsView</extends>
+   <header>customgview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
