@@ -30,15 +30,12 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     foot.cpp \
-    customgview.cpp \
-    footform.cpp
+    customgview.cpp
 
 HEADERS += \
         mainwindow.h \
     foot.h \
-    customgview.h \
-    footform.h
+    customgview.h
 
 FORMS += \
-        mainwindow.ui \
-    footform.ui
+        mainwindow.ui
