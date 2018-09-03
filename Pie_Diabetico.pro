@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,13 +31,17 @@ SOURCES += \
         mainwindow.cpp \
     foot.cpp \
     customgview.cpp \
-    database.cpp
+    database.cpp \
+    qsqlite.cpp \
+    patient.cpp
 
 HEADERS += \
         mainwindow.h \
     foot.h \
     customgview.h \
-    database.h
+    database.h \
+    qsqlite.h \
+    patient.h
 
 FORMS += \
         mainwindow.ui

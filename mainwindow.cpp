@@ -51,8 +51,30 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setupPatientInfoLayout();
     setupDermatologicalExamLayout();
+    ui->visitDE->setDate(QDate::currentDate());
     }
 
 MainWindow::~MainWindow() {
     delete ui;
+    }
+
+void MainWindow::on_actionNuevo_triggered() {
+
+    }
+
+void MainWindow::on_actionAbrir_triggered() {
+
+    }
+// QString _name = "", int _age = 0, QString _gender = "", QString _patology = "", QString _date = "", QString _imgPath = "" );
+void MainWindow::on_actionGuardar_triggered() {
+    Patient p( int(),
+               ui->fileNumLE->text().toInt(),
+               ui->nameLE->text(),
+               ui->ageSB->value(),
+               ui->genderCB->currentText(),
+               ui->patologyLE->text(),
+               ui->visitDE->text(),
+               QString("")
+                );
+    Database::insertPatient( p );
     }

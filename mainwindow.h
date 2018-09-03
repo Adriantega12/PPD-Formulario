@@ -6,6 +6,7 @@
 #include <QFormLayout>
 
 #include "foot.h"
+#include "database.h"
 
 namespace Ui {
     class MainWindow;
@@ -21,6 +22,10 @@ class MainWindow : public QMainWindow {
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
-    };
+private slots:
+        void on_actionNuevo_triggered();
+        void on_actionAbrir_triggered();
+        void on_actionGuardar_triggered();
+};
 
 #endif // MAINWINDOW_H

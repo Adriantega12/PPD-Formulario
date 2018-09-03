@@ -18,7 +18,11 @@
     <item>
      <layout class="QGridLayout" name="patientFormLO">
       <item row="3" column="3">
-       <widget class="QDateEdit" name="visitDE"/>
+       <widget class="QDateEdit" name="visitDE">
+        <property name="displayFormat">
+         <string>dd/MM/yyyy</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="3">
        <widget class="QLabel" name="fileNumLbl">
@@ -58,7 +62,18 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QComboBox" name="genderCB"/>
+       <widget class="QComboBox" name="genderCB">
+        <item>
+         <property name="text">
+          <string>M</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>F</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="genderLbl">
