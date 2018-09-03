@@ -15,7 +15,8 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
     private:
         Ui::MainWindow *ui;
-        void setupDermatologicalExam();
+        void setupPatientInfoLayout();
+        void setupDermatologicalExamLayout();
 
     public:
         explicit MainWindow(QWidget *parent = 0);

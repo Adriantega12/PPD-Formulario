@@ -24,18 +24,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Inlude OpenCV
 # INCLUDEPATH += /usr/include/opencv
-LIBS += -lopencv_core
+# LIBS += -lopencv_core
 
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
     foot.cpp \
-    customgview.cpp
+    customgview.cpp \
+    database.cpp
 
 HEADERS += \
         mainwindow.h \
     foot.h \
-    customgview.h
+    customgview.h \
+    database.h
 
 FORMS += \
         mainwindow.ui

@@ -14,138 +14,88 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>851</width>
-      <height>116</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="formLeftSideLO">
-     <item row="1" column="0">
-      <layout class="QVBoxLayout" name="ageLO">
-       <item>
-        <widget class="QLabel" name="ageLbl">
-         <property name="text">
-          <string>Edad:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="ageSB"/>
-       </item>
-      </layout>
-     </item>
-     <item row="1" column="1">
-      <layout class="QVBoxLayout" name="genderLO">
-       <item>
-        <widget class="QLabel" name="genderLbl">
-         <property name="text">
-          <string>Género:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="genderCB"/>
-       </item>
-      </layout>
-     </item>
-     <item row="1" column="2">
-      <layout class="QVBoxLayout" name="patologyLO">
-       <item>
-        <widget class="QLabel" name="patologyLbl">
-         <property name="text">
-          <string>Patología:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="patologyLE"/>
-       </item>
-      </layout>
-     </item>
-     <item row="0" column="0" colspan="3">
-      <layout class="QFormLayout" name="nameLO">
-       <item row="0" column="0">
-        <widget class="QLabel" name="nameLbl">
-         <property name="text">
-          <string>Nombre:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QLineEdit" name="nameLE"/>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>10</y>
-      <width>143</width>
-      <height>114</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="formRightSideLO">
-     <item>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="fileNumLbl">
-         <property name="text">
-          <string>Número de Expediente:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QLineEdit" name="fileNumLE"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QFormLayout" name="formLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="dateLbl">
-         <property name="text">
-          <string>Fecha:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QDateEdit" name="visitDE"/>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>130</y>
-      <width>1001</width>
-      <height>531</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="feetFormLO">
-     <item>
-      <widget class="CustomGView" name="leftFootGV"/>
-     </item>
-     <item>
-      <layout class="QFormLayout" name="rightFootLO"/>
-     </item>
-     <item>
-      <layout class="QFormLayout" name="leftFootLO"/>
-     </item>
-     <item>
-      <widget class="CustomGView" name="rightFootGV"/>
-     </item>
-    </layout>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QGridLayout" name="patientFormLO">
+      <item row="3" column="3">
+       <widget class="QDateEdit" name="visitDE"/>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="fileNumLbl">
+        <property name="text">
+         <string>Número de Expediente:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="patologyLbl">
+        <property name="text">
+         <string>Patología:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLineEdit" name="patologyLE"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QSpinBox" name="ageSB"/>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLabel" name="dateLbl">
+        <property name="text">
+         <string>Fecha:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="fileNumLE"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="ageLbl">
+        <property name="text">
+         <string>Edad:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="genderCB"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="genderLbl">
+        <property name="text">
+         <string>Género:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="QLineEdit" name="nameLE"/>
+      </item>
+      <item row="0" column="0" colspan="3">
+       <widget class="QLabel" name="nameLbl">
+        <property name="text">
+         <string>Nombre:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="feetFormLO">
+      <item>
+       <widget class="CustomGView" name="leftFootGV"/>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="rightFootLO"/>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="leftFootLO"/>
+      </item>
+      <item>
+       <widget class="CustomGView" name="rightFootGV"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
