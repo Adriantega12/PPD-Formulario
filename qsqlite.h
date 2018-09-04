@@ -36,6 +36,8 @@ class QSQLite {
 
         // Consultas
         Patient* getPatientById( int );
+        Patient* getPatientByFileNumber( int );
+        std::vector<Patient*> getAllPatients();
     };
 
 #endif // QSQLITE_H

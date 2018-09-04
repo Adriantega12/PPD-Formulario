@@ -6,11 +6,13 @@
 #include <QFormLayout>
 #include <QComboBox>
 #include <QFileDialog>
+#include <QMessageBox>
 
 #include <vector>
 
 #include "foot.h"
 #include "database.h"
+#include "loadpatientdialog.h"
 
 namespace Ui {
     class MainWindow;

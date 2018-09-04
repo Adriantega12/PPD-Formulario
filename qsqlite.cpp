@@ -176,3 +176,35 @@ Patient* QSQLite::getPatientById( int id ) {
 
     return patientPtr;
     }
+
+Patient* QSQLite::getPatientByFileNumber( int ) {
+    return nullptr;
+    }
+
+std::vector<Patient*> QSQLite::getAllPatients() {
+    std::vector<Patient*> patients;
+    QSqlQuery query("SELECT * FROM Paciente;");
+
+    int id;
+    int fileNumber;
+    QString name;
+    int age;
+    QString gender;
+    QString patology;
+    QString date;
+    QString imgPath;
+
+    while ( query.next() ) {
+        id = query.value("id").toInt();
+        fileNumber = query.value("file_num").toInt();
+        name = query.value("name").toString();
+        age = query.value("age").toInt();
+        gender = query.value("gender").toString();
+        patology = query.value("patology").toString();
+        date = query.value("date").toString();
+        imgPath = query.value("img_path").toString();
+        patients.push_back( new Patient( id, fileNumber, name, age, gender, patology, date, imgPath ) );
+        }
+
+    return patients;
+    }

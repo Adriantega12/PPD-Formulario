@@ -33,7 +33,8 @@ SOURCES += \
     customgview.cpp \
     database.cpp \
     qsqlite.cpp \
-    patient.cpp
+    patient.cpp \
+    loadpatientdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,9 @@ HEADERS += \
     customgview.h \
     database.h \
     qsqlite.h \
-    patient.h
+    patient.h \
+    loadpatientdialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    loadpatientdialog.ui

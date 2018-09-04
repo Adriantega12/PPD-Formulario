@@ -69,7 +69,9 @@ void MainWindow::on_actionNuevo_triggered() {
     }
 
 void MainWindow::on_actionAbrir_triggered() {
-
+    LoadPatientDialog dialog;
+    dialog.exec();
+    dialog.show();
     }
 
 void MainWindow::on_actionGuardar_triggered() {
@@ -92,6 +94,10 @@ void MainWindow::on_actionGuardar_triggered() {
     Database::insertPatient( p );
     Database::insertFoot( left );
     Database::insertFoot( right );
+
+    QMessageBox mb;
+    mb.setText( "El paciente ha sido guardado correctamente." );
+    mb.exec();
     }
 
 void MainWindow::on_actionImagen_triggered() {
