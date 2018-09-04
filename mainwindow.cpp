@@ -72,7 +72,6 @@ void MainWindow::on_actionAbrir_triggered() {
 
     }
 
-// QString _name = "", int _age = 0, QString _gender = "", QString _patology = "", QString _date = "", QString _imgPath = "" );
 void MainWindow::on_actionGuardar_triggered() {
     Patient p( Database::getNumberOfPatients() + 1,
                ui->fileNumLE->text().toInt(),
@@ -81,7 +80,7 @@ void MainWindow::on_actionGuardar_triggered() {
                ui->genderCB->currentText(),
                ui->patologyLE->text(),
                ui->visitDE->text(),
-               QString("")
+               filePath
                 );
     Foot left(p.getId()), right(p.getId());
 
@@ -93,4 +92,8 @@ void MainWindow::on_actionGuardar_triggered() {
     Database::insertPatient( p );
     Database::insertFoot( left );
     Database::insertFoot( right );
+    }
+
+void MainWindow::on_actionImagen_triggered() {
+    filePath = QFileDialog::getOpenFileName( this, QString("Buscar imagen"), QDir::homePath() );
     }

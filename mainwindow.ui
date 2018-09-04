@@ -138,7 +138,14 @@
     <addaction name="actionAbrir"/>
     <addaction name="actionGuardar"/>
    </widget>
+   <widget class="QMenu" name="menuInsertar">
+    <property name="title">
+     <string>Insertar</string>
+    </property>
+    <addaction name="actionImagen"/>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuInsertar"/>
   </widget>
   <action name="actionNuevo">
    <property name="text">
@@ -153,6 +160,11 @@
   <action name="actionGuardar">
    <property name="text">
     <string>Guardar</string>
+   </property>
+  </action>
+  <action name="actionImagen">
+   <property name="text">
+    <string>Imagen</string>
    </property>
   </action>
  </widget>

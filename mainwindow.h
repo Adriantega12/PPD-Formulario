@@ -5,6 +5,7 @@
 #include <QGroupBox>
 #include <QFormLayout>
 #include <QComboBox>
+#include <QFileDialog>
 
 #include <vector>
 
@@ -26,6 +27,8 @@ class MainWindow : public QMainWindow {
         std::vector<QComboBox*> leftFoot;
         std::vector<QComboBox*> rightFoot;
 
+        QString filePath;
+
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
@@ -33,6 +36,7 @@ private slots:
         void on_actionNuevo_triggered();
         void on_actionAbrir_triggered();
         void on_actionGuardar_triggered();
+        void on_actionImagen_triggered();
 };
 
 #endif // MAINWINDOW_H
