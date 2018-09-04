@@ -7,6 +7,7 @@
 #include <QComboBox>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QProcess>
 
 #include <vector>
 
