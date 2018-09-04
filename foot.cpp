@@ -12,14 +12,15 @@ const QString Foot::LABEL[Foot::NUMBER_OF_ATTRIBUTES] = {
     "Necrosis",
     "Grietas y fisuras",
     "Lesión superficial",
-    "Otras difusas",
+    //"Otras difusas",
     "Anhidrosis",
     "Tilias",
     "Proceso infeccioso"
     };
 
-Foot::Foot() {
-    dermatologicalValues.reserve( NUMBER_OF_ATTRIBUTES - 1 );
+Foot::Foot( int oId ) :
+    ownerId(oId) {
+    dermatologicalValues.reserve(Foot::NUMBER_OF_ATTRIBUTES - 1);
     }
 
 Foot::~Foot() {
@@ -34,14 +35,8 @@ void Foot::setOwnerId( int _oId ) {
     ownerId = _oId;
     }
 
-void Foot::setDermatologicalValue( int val, DermatologicalLabel index ) {
-    if ( index < 0 or index == DermatologicalLabel::OTHERS or index >= NUMBER_OF_ATTRIBUTES ) {
-        qDebug() << "Error: Can't overwrite at asked index.";
-        return;
-        }
-
-    dermatologicalValues[(index < DermatologicalLabel::OTHERS ?
-                              index : index - 1)] = val;
+void Foot::setDermatologicalValue( int val, int index ) {
+    dermatologicalValues[index] = val;
     }
 
 int Foot::getId() const {
@@ -53,10 +48,9 @@ int Foot::getOwnerId() const {
     }
 
 int Foot::getDermatologicalValue( DermatologicalLabel index ) {
-    if ( index < 0 or index == DermatologicalLabel::OTHERS or index >= NUMBER_OF_ATTRIBUTES ) {
-        qDebug() << "Error: Can't read from that index.";
-        return -1;
-        }
+    return dermatologicalValues.at(index);
+    }
 
-    return dermatologicalValues.at((index < DermatologicalLabel::OTHERS ? index : index - 1));
+void Foot::insertDermatologicalValue( int val ) {
+    dermatologicalValues.push_back( val );
     }

@@ -24,6 +24,8 @@ class QSQLite {
         bool deleteDB();
         QSqlError lastError();
 
+        int getNumberOfPatients();
+
         // Setup
         bool createPatientTable();
         bool createFootTable();

@@ -33,15 +33,21 @@ void MainWindow::setupDermatologicalExamLayout() {
 
     for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
         cbL = cbR = nullptr;
-        if ( i != Foot::OTHERS ) {
-            cbL = new QComboBox();
-            cbR = new QComboBox();
-            cbL->addItems(items);
-            cbR->addItems(items);
-            }
+
+        cbL = new QComboBox();
+        cbR = new QComboBox();
+        cbL->addItems(items);
+        cbR->addItems(items);
+        leftFoot.push_back( cbL );
+        rightFoot.push_back( cbR );
 
         leftLO->addRow( new QLabel(Foot::LABEL[i]), cbL );
         rightLO->addRow( new QLabel(Foot::LABEL[i]), cbR );
+
+        if ( i == Foot::SUPERFICIAL_INJURY ) {
+            leftLO->addRow( new QLabel("Otras difusas:") );
+            rightLO->addRow( new QLabel("Otras difusas:") );
+            }
         }
     }
 
@@ -65,9 +71,10 @@ void MainWindow::on_actionNuevo_triggered() {
 void MainWindow::on_actionAbrir_triggered() {
 
     }
+
 // QString _name = "", int _age = 0, QString _gender = "", QString _patology = "", QString _date = "", QString _imgPath = "" );
 void MainWindow::on_actionGuardar_triggered() {
-    Patient p( int(),
+    Patient p( Database::getNumberOfPatients() + 1,
                ui->fileNumLE->text().toInt(),
                ui->nameLE->text(),
                ui->ageSB->value(),
@@ -76,5 +83,14 @@ void MainWindow::on_actionGuardar_triggered() {
                ui->visitDE->text(),
                QString("")
                 );
+    Foot left(p.getId()), right(p.getId());
+
+    for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
+        left.insertDermatologicalValue( leftFoot[i]->currentIndex() );
+        right.insertDermatologicalValue( rightFoot[i]->currentIndex() );
+        }
+
     Database::insertPatient( p );
+    Database::insertFoot( left );
+    Database::insertFoot( right );
     }

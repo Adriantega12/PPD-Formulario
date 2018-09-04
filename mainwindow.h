@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QGroupBox>
 #include <QFormLayout>
+#include <QComboBox>
+
+#include <vector>
 
 #include "foot.h"
 #include "database.h"
@@ -18,6 +21,10 @@ class MainWindow : public QMainWindow {
         Ui::MainWindow *ui;
         void setupPatientInfoLayout();
         void setupDermatologicalExamLayout();
+
+        // Modify this later
+        std::vector<QComboBox*> leftFoot;
+        std::vector<QComboBox*> rightFoot;
 
     public:
         explicit MainWindow(QWidget *parent = 0);

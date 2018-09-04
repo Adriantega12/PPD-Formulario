@@ -8,7 +8,7 @@ bool QSQLite::initializeSQLiteDB( QString name ) {
     bool success;
     dbName = name;
 
-    if ( success = openDB() ) {
+    if ( (success = openDB()) ) {
         qDebug() << "Database connection: Ok";
         }
     else {
@@ -45,6 +45,23 @@ QSqlError QSQLite::lastError() {
     // If opening database has failed user can ask
     // error description by QSqlError::text()
     return db.lastError();
+    }
+
+int QSQLite::getNumberOfPatients() {
+    QSqlQuery query;
+    int count = -1;
+
+    query.prepare( QString("SELECT COUNT(*) FROM Paciente") );
+
+    if ( query.exec() ) {
+
+        // Existe
+        if ( query.next() ) {
+            count = query.value(0).toInt();
+            }
+        }
+
+    return count;
     }
 
 bool QSQLite::createPatientTable() {

@@ -4,7 +4,7 @@ Patient::Patient( int _id, int _fileNum, QString _name, int _age, QString _gende
                  QString _patology, QString _date, QString _imgPath ) :
                   id(_id), fileNum(_fileNum), name(_name), age(_age), gender(_gender),
                   patology(_patology), date(_date), imgPath(_imgPath),
-                  left(nullptr), right(nullptr) { }
+                  right(nullptr), left(nullptr) { }
 
 Patient::~Patient() {
     if ( left != nullptr ) delete left;

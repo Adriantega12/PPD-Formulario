@@ -20,7 +20,7 @@ class Patient {
         Foot* left;
 
     public:
-        Patient(int _id = 0, int _fileNum = 0, QString _name = "", int _age = 0, QString _gender = "", QString _patology = "", QString _date = "", QString _imgPath = "" );
+        Patient( int _id = 0, int _fileNum = 0, QString _name = "", int _age = 0, QString _gender = "", QString _patology = "", QString _date = "", QString _imgPath = "" );
         ~Patient();
 
         // Setters

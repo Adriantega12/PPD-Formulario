@@ -164,6 +164,16 @@
    <header>customgview.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>nameLE</tabstop>
+  <tabstop>fileNumLE</tabstop>
+  <tabstop>ageSB</tabstop>
+  <tabstop>genderCB</tabstop>
+  <tabstop>patologyLE</tabstop>
+  <tabstop>visitDE</tabstop>
+  <tabstop>leftFootGV</tabstop>
+  <tabstop>rightFootGV</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -13,7 +13,7 @@ class Foot {
         std::vector<int> dermatologicalValues;
 
     public:
-        static const int NUMBER_OF_ATTRIBUTES = 15;
+        static const int NUMBER_OF_ATTRIBUTES = 14;
         static const QString LABEL[NUMBER_OF_ATTRIBUTES];
         enum DermatologicalLabel {
             PLANTAR = 0,
@@ -27,22 +27,24 @@ class Foot {
             NECROSIS,
             CRACKS_AND_FISSURES,
             SUPERFICIAL_INJURY,
-            OTHERS,
+            //OTHERS,
             ANHIDROSIS,
             TILIAS,
             INFECTIVE_PROCESS
             };
 
-        Foot();
+        Foot( int );
         ~Foot();
 
         void setId( int );
         void setOwnerId( int );
-        void setDermatologicalValue( int, DermatologicalLabel );
+        void setDermatologicalValue( int, int );
 
         int getId() const;
         int getOwnerId() const;
         int getDermatologicalValue( DermatologicalLabel );
+
+        void insertDermatologicalValue( int );
     };
 
 #endif // FOOT_H
