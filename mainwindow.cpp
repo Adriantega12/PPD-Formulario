@@ -34,19 +34,19 @@ void MainWindow::setupDermatologicalExamLayout() {
     for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
         cbL = cbR = nullptr;
 
-        cbL = new QComboBox();
         cbR = new QComboBox();
-        cbL->addItems(items);
+        cbL = new QComboBox();
         cbR->addItems(items);
-        leftFoot.push_back( cbL );
+        cbL->addItems(items);
         rightFoot.push_back( cbR );
+        leftFoot.push_back( cbL );
 
-        leftLO->addRow( new QLabel(Foot::LABEL[i]), cbL );
         rightLO->addRow( new QLabel(Foot::LABEL[i]), cbR );
+        leftLO->addRow( new QLabel(Foot::LABEL[i]), cbL );
 
         if ( i == Foot::SUPERFICIAL_INJURY ) {
-            leftLO->addRow( new QLabel("Otras difusas:") );
             rightLO->addRow( new QLabel("Otras difusas:") );
+            leftLO->addRow( new QLabel("Otras difusas:") );
             }
         }
     }
@@ -90,10 +90,26 @@ void MainWindow::on_actionGuardar_triggered() {
         }
 
     Database::insertPatient( p );
-    Database::insertFoot( left );
     Database::insertFoot( right );
+    Database::insertFoot( left );
     }
 
 void MainWindow::on_actionImagen_triggered() {
     filePath = QFileDialog::getOpenFileName( this, QString("Buscar imagen"), QDir::homePath() );
+
+    /*QImage image( filePath );
+    QGraphicsScene* scene = new QGraphicsScene();
+    scene->addPixmap(QPixmap::fromImage(image));
+    ui->leftFootGV->setScene(scene);*/
+    QStringList args = (QStringList() << filePath << "-s");
+    QProcess* algorithm = new QProcess(this);
+    algorithm->startDetached( "./IP-Module-PPD", args );
+    QImage left( "./left.jpg" ), right( "./right.jpg" );
+    QGraphicsScene* lScene = new QGraphicsScene(),
+                    *rScene = new QGraphicsScene();
+    lScene->addPixmap(QPixmap::fromImage(left));
+    rScene->addPixmap(QPixmap::fromImage(right));
+    // NO OLVIDES QUE ESTÁN AL REVÉS
+    ui->leftFootGV->setScene(rScene);
+    ui->rightFootGV->setScene(lScene);
     }

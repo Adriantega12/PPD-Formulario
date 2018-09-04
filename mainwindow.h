@@ -6,6 +6,7 @@
 #include <QFormLayout>
 #include <QComboBox>
 #include <QFileDialog>
+#include <QProcess>
 
 #include <vector>
 
