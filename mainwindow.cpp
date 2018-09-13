@@ -25,11 +25,17 @@ void MainWindow::setupPatientInfoLayout() {
     }
 
 void MainWindow::setupDermatologicalExamLayout() {
-    QFormLayout* leftLO = ui->leftFootLO;
-    QFormLayout* rightLO = ui->rightFootLO;
+    QHBoxLayout* lo = new QHBoxLayout;
+    QFormLayout* rightLO = new QFormLayout;
+    QFormLayout* leftLO = new QFormLayout;
     QStringList items = (QStringList() << "0" << "1" << "2");
     QComboBox* cbL;
     QComboBox* cbR;
+
+    lo->addLayout( rightLO );
+    lo->addLayout( leftLO );
+
+    ui->dermatologicalTab->setLayout( lo );
 
     for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
         cbL = cbR = nullptr;
@@ -38,15 +44,15 @@ void MainWindow::setupDermatologicalExamLayout() {
         cbR = new QComboBox();
         cbL->addItems(items);
         cbR->addItems(items);
-        leftFoot.push_back( cbL );
         rightFoot.push_back( cbR );
+        leftFoot.push_back( cbL );
 
-        leftLO->addRow( new QLabel(Foot::LABEL[i]), cbL );
         rightLO->addRow( new QLabel(Foot::LABEL[i]), cbR );
+        leftLO->addRow( new QLabel(Foot::LABEL[i]), cbL );
 
         if ( i == Foot::SUPERFICIAL_INJURY ) {
-            leftLO->addRow( new QLabel("Otras difusas:") );
             rightLO->addRow( new QLabel("Otras difusas:") );
+            leftLO->addRow( new QLabel("Otras difusas:") );
             }
         }
     }

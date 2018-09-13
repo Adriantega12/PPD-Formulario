@@ -100,10 +100,31 @@
        <widget class="CustomGView" name="leftFootGV"/>
       </item>
       <item>
-       <layout class="QFormLayout" name="rightFootLO"/>
-      </item>
-      <item>
-       <layout class="QFormLayout" name="leftFootLO"/>
+       <widget class="QTabWidget" name="examTabs">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="dermatologicalTab">
+         <attribute name="title">
+          <string>Dermatológico</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="boneTab">
+         <attribute name="title">
+          <string>Estructura Ósea</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="vascularTab">
+         <attribute name="title">
+          <string>Vascular</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="neurologicalTab">
+         <attribute name="title">
+          <string>Neurológico</string>
+         </attribute>
+        </widget>
+       </widget>
       </item>
       <item>
        <widget class="CustomGView" name="rightFootGV"/>
