@@ -25,7 +25,7 @@ void MainWindow::setupPatientInfoLayout() {
     }
 
 void MainWindow::setupDermatologicalExamLayout() {
-    QHBoxLayout* lo = new QHBoxLayout;
+    /*QHBoxLayout* lo = new QHBoxLayout;
     QFormLayout* rightLO = new QFormLayout;
     QFormLayout* leftLO = new QFormLayout;
     QStringList items = (QStringList() << "0" << "1" << "2");
@@ -54,7 +54,7 @@ void MainWindow::setupDermatologicalExamLayout() {
             rightLO->addRow( new QLabel("Otras difusas:") );
             leftLO->addRow( new QLabel("Otras difusas:") );
             }
-        }
+        }*/
     }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -92,10 +92,10 @@ void MainWindow::on_actionGuardar_triggered() {
                 );
     Foot left(p.getId()), right(p.getId());
 
-    for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
+    /*for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
         left.insertDermatologicalValue( leftFoot[i]->currentIndex() );
         right.insertDermatologicalValue( rightFoot[i]->currentIndex() );
-        }
+        }*/
 
     Database::insertPatient( p );
     Database::insertFoot( left );

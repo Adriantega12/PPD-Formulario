@@ -34,7 +34,8 @@ SOURCES += \
     database.cpp \
     qsqlite.cpp \
     patient.cpp \
-    loadpatientdialog.cpp
+    loadpatientdialog.cpp \
+    feetexam.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,7 +44,8 @@ HEADERS += \
     database.h \
     qsqlite.h \
     patient.h \
-    loadpatientdialog.h
+    loadpatientdialog.h \
+    feetexam.h
 
 FORMS += \
         mainwindow.ui \

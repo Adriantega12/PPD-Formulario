@@ -6,6 +6,8 @@
 
 #include <vector>
 
+#include "feetexam.h"
+
 class Foot {
     private:
         int id;
@@ -13,26 +15,6 @@ class Foot {
         std::vector<int> dermatologicalValues;
 
     public:
-        static const int NUMBER_OF_ATTRIBUTES = 14;
-        static const QString LABEL[NUMBER_OF_ATTRIBUTES];
-        enum DermatologicalLabel {
-            PLANTAR = 0,
-            DORSAL,
-            TALAR,
-            ONYCHOCRYPTOSIS,
-            ONYCHOMYCOSIS,
-            ONYCHOGYPHOSIS,
-            BULLOSIS,
-            ULCER,
-            NECROSIS,
-            CRACKS_AND_FISSURES,
-            SUPERFICIAL_INJURY,
-            //OTHERS,
-            ANHIDROSIS,
-            TILIAS,
-            INFECTIVE_PROCESS
-            };
-
         Foot( int );
         ~Foot();
 
@@ -42,7 +24,7 @@ class Foot {
 
         int getId() const;
         int getOwnerId() const;
-        int getDermatologicalValue( DermatologicalLabel );
+        int getDermatologicalValue( FeetExam::Dermatological );
 
         void insertDermatologicalValue( int );
     };
