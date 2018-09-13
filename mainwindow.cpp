@@ -25,36 +25,10 @@ void MainWindow::setupPatientInfoLayout() {
     }
 
 void MainWindow::setupDermatologicalExamLayout() {
-    /*QHBoxLayout* lo = new QHBoxLayout;
-    QFormLayout* rightLO = new QFormLayout;
-    QFormLayout* leftLO = new QFormLayout;
-    QStringList items = (QStringList() << "0" << "1" << "2");
-    QComboBox* cbL;
-    QComboBox* cbR;
-
-    lo->addLayout( rightLO );
-    lo->addLayout( leftLO );
-
-    ui->dermatologicalTab->setLayout( lo );
-
-    for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
-        cbL = cbR = nullptr;
-
-        cbL = new QComboBox();
-        cbR = new QComboBox();
-        cbL->addItems(items);
-        cbR->addItems(items);
-        rightFoot.push_back( cbR );
-        leftFoot.push_back( cbL );
-
-        rightLO->addRow( new QLabel(Foot::LABEL[i]), cbR );
-        leftLO->addRow( new QLabel(Foot::LABEL[i]), cbL );
-
-        if ( i == Foot::SUPERFICIAL_INJURY ) {
-            rightLO->addRow( new QLabel("Otras difusas:") );
-            leftLO->addRow( new QLabel("Otras difusas:") );
-            }
-        }*/
+    FeetExam::setupDermatologicalExam( ui->dermatologicalTab );
+    FeetExam::setupBoneStructureExam( ui->boneTab );
+    FeetExam::setupVascularExam( ui->vascularTab );
+    FeetExam::setupNeurologicalExam( ui->neurologicalTab );
     }
 
 MainWindow::MainWindow(QWidget *parent) :

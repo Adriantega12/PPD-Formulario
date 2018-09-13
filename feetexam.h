@@ -2,10 +2,18 @@
 #define FEETEXAM_H
 
 #include <QString>
+#include <QWidget>
+#include <QFormLayout>
+#include <QComboBox>
+#include <QLabel>
+
+#include <functional>
 
 class FeetExam {
     private:
-
+        static void setupExam(QWidget*, const QString[], int,
+                              std::function<void(int, QFormLayout*, QFormLayout*)>,
+                              std::vector<int>* = nullptr);
 
     public:
         enum Dermatological {
@@ -61,6 +69,11 @@ class FeetExam {
         static const QString NEUROLOGICAL_LABELS[NUM_NEURO];
 
         FeetExam();
+
+        static void setupDermatologicalExam( QWidget*, std::vector<int>* = nullptr );
+        static void setupBoneStructureExam(QWidget*, std::vector<int>* = nullptr );
+        static void setupVascularExam(QWidget*, std::vector<int>* = nullptr );
+        static void setupNeurologicalExam(QWidget*, std::vector<int>* = nullptr );
     };
 
 #endif // FEETEXAM_H

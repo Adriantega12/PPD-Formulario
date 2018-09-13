@@ -13,6 +13,7 @@
 #include "foot.h"
 #include "database.h"
 #include "loadpatientdialog.h"
+#include "feetexam.h"
 
 namespace Ui {
     class MainWindow;
