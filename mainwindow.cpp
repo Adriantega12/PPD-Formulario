@@ -25,13 +25,13 @@ void MainWindow::setupPatientInfoLayout() {
     }
 
 void MainWindow::setupDermatologicalExamLayout() {
-    QFormLayout* leftLO = ui->leftFootLO;
-    QFormLayout* rightLO = ui->rightFootLO;
+    //QFormLayout* leftLO = ui->leftFootLO;
+    //QFormLayout* rightLO = ui->rightFootLO;
     QStringList items = (QStringList() << "0" << "1" << "2");
     QComboBox* cbL;
     QComboBox* cbR;
 
-    for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
+    /*for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
         cbL = cbR = nullptr;
 
         cbR = new QComboBox();
@@ -48,7 +48,12 @@ void MainWindow::setupDermatologicalExamLayout() {
             rightLO->addRow( new QLabel("Otras difusas:") );
             leftLO->addRow( new QLabel("Otras difusas:") );
             }
-        }
+        }*/
+
+    FeetExam::setupDermatologicalExam( ui->dermatologicalTab );
+    FeetExam::setupBoneStructureExam( ui->boneTab );
+    FeetExam::setupVascularExam( ui->vascularTab );
+    FeetExam::setupNeurologicalExam( ui->neurologicalTab );
     }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -86,10 +91,10 @@ void MainWindow::on_actionGuardar_triggered() {
                 );
     Foot left(p.getId()), right(p.getId());
 
-    for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
+    /*for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
         left.insertDermatologicalValue( leftFoot[i]->currentIndex() );
         right.insertDermatologicalValue( rightFoot[i]->currentIndex() );
-        }
+        }*/
 
     Database::insertPatient( p );
     Database::insertFoot( right );

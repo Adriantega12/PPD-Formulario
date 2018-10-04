@@ -6,6 +6,7 @@
 // La intención es que la base de datos sea lo más modular posible para que se pueda migrar de ser necesario
 #include "qsqlite.h"
 #include "patient.h"
+#include "feetexam.h"
 
 /*class QSQLite;
 class Patient;

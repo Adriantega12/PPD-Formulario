@@ -28,20 +28,20 @@ bool Database::insertPatient( Patient& p ) {
 
 bool  Database::insertFoot( Foot& f ) {
     bool success = Database::db.insertFoot( f.getOwnerId(),
-                                            f.getDermatologicalValue( Foot::PLANTAR ),
-                                            f.getDermatologicalValue( Foot::DORSAL ),
-                                            f.getDermatologicalValue( Foot::TALAR ),
-                                            f.getDermatologicalValue( Foot::ONYCHOCRYPTOSIS ),
-                                            f.getDermatologicalValue( Foot::ONYCHOMYCOSIS ),
-                                            f.getDermatologicalValue( Foot::ONYCHOGYPHOSIS ),
-                                            f.getDermatologicalValue( Foot::BULLOSIS ),
-                                            f.getDermatologicalValue( Foot::ULCER ),
-                                            f.getDermatologicalValue( Foot::NECROSIS ),
-                                            f.getDermatologicalValue( Foot::CRACKS_AND_FISSURES ),
-                                            f.getDermatologicalValue( Foot::SUPERFICIAL_INJURY ),
-                                            f.getDermatologicalValue( Foot::ANHIDROSIS ),
-                                            f.getDermatologicalValue( Foot::TILIAS ),
-                                            f.getDermatologicalValue( Foot::INFECTIVE_PROCESS ));
+                                            f.getDermatologicalValue( FeetExam::PLANTAR ),
+                                            f.getDermatologicalValue( FeetExam::DORSAL ),
+                                            f.getDermatologicalValue( FeetExam::TALAR ),
+                                            f.getDermatologicalValue( FeetExam::ONYCHOCRYPTOSIS ),
+                                            f.getDermatologicalValue( FeetExam::ONYCHOMYCOSIS ),
+                                            f.getDermatologicalValue( FeetExam::ONYCHOGYPHOSIS ),
+                                            f.getDermatologicalValue( FeetExam::BULLOSIS ),
+                                            f.getDermatologicalValue( FeetExam::ULCER ),
+                                            f.getDermatologicalValue( FeetExam::NECROSIS ),
+                                            f.getDermatologicalValue( FeetExam::CRACKS_AND_FISSURES ),
+                                            f.getDermatologicalValue( FeetExam::SUPERFICIAL_INJURY ),
+                                            f.getDermatologicalValue( FeetExam::ANHIDROSIS ),
+                                            f.getDermatologicalValue( FeetExam::TILIAS ),
+                                            f.getDermatologicalValue( FeetExam::INFECTIVE_PROCESS ));
 
     return success;
     }

@@ -1,26 +1,8 @@
 #include "foot.h"
 
-const QString Foot::LABEL[Foot::NUMBER_OF_ATTRIBUTES] = {
-    "Plantar",
-    "Dorsal",
-    "Talar",
-    "Onicocriptosis",
-    "Onicomicosis",
-    "Onicogrifosis",
-    "Bullosis",
-    "Úlcera",
-    "Necrosis",
-    "Grietas y fisuras",
-    "Lesión superficial",
-    //"Otras difusas",
-    "Anhidrosis",
-    "Tilias",
-    "Proceso infeccioso"
-    };
-
 Foot::Foot( int oId ) :
     ownerId(oId) {
-    dermatologicalValues.reserve(Foot::NUMBER_OF_ATTRIBUTES - 1);
+    //dermatologicalValues.reserve(Foot::NUMBER_OF_ATTRIBUTES - 1);
     }
 
 Foot::~Foot() {
@@ -47,7 +29,7 @@ int Foot::getOwnerId() const {
     return ownerId;
     }
 
-int Foot::getDermatologicalValue( DermatologicalLabel index ) {
+int Foot::getDermatologicalValue( FeetExam::Dermatological index ) {
     return dermatologicalValues.at(index);
     }
 
