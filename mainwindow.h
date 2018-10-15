@@ -25,11 +25,11 @@ class MainWindow : public QMainWindow {
     private:
         Ui::MainWindow *ui;
         void setupPatientInfoLayout();
-        void setupDermatologicalExamLayout();
+        void setupExamLayout();
 
         // Modify this later
-        std::vector<QComboBox*> leftFoot;
-        std::vector<QComboBox*> rightFoot;
+        QVector<QComboBox*> leftFoot;
+        QVector<QComboBox*> rightFoot;
 
         QString filePath;
 

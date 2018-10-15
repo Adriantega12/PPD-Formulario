@@ -42,7 +42,11 @@ const QString FeetExam::NEUROLOGICAL_LABELS[FeetExam::NUM_NEURO] = {
     "Apertura ortejos en abanico"
     };
 
-void FeetExam::setupExam(QWidget* tab, const QString labels[], int numLabels,
+void FeetExam::setupExam(QWidget* tab,
+                         QVector<QComboBox*>& rightCBs,
+                         QVector<QComboBox*>& leftCBs,
+                         const QString labels[],
+                         int numLabels,
                          std::function<void(int, QFormLayout*, QFormLayout*)> func,
                          std::vector<int>* data) {
     QHBoxLayout* lo = new QHBoxLayout;
@@ -64,10 +68,8 @@ void FeetExam::setupExam(QWidget* tab, const QString labels[], int numLabels,
         cbR = new QComboBox();
         cbL->addItems(items);
         cbR->addItems(items);
-        /*
-        rightFoot.push_back( cbR );
-        leftFoot.push_back( cbL );
-        */
+        rightCBs.push_back( cbR );
+        leftCBs.push_back( cbL );
 
         rightLO->addRow( new QLabel(labels[i]), cbR );
         leftLO->addRow( new QLabel(labels[i]), cbL );
@@ -80,8 +82,8 @@ FeetExam::FeetExam() {
 
     }
 
-void FeetExam::setupDermatologicalExam(QWidget* tab, std::vector<int>* data ) {
-    setupExam(tab, DERMATOLOGICAL_LABELS, NUM_DERMA, [](int index, QFormLayout* rightLO, QFormLayout* leftLO) {
+void FeetExam::setupDermatologicalExam(QWidget* tab, QVector<QComboBox*>& right, QVector<QComboBox*>& left, std::vector<int>* data) {
+    setupExam(tab, right, left, DERMATOLOGICAL_LABELS, NUM_DERMA, [](int index, QFormLayout* rightLO, QFormLayout* leftLO) {
         if ( index == Dermatological::SUPERFICIAL_INJURY ) {
             rightLO->addRow( new QLabel("Otras difusas: ") );
             leftLO->addRow( new QLabel("Otras difusas: ") );
@@ -89,14 +91,14 @@ void FeetExam::setupDermatologicalExam(QWidget* tab, std::vector<int>* data ) {
         }, data);
     }
 
-void FeetExam::setupBoneStructureExam(QWidget* tab, std::vector<int>* data ) {
-    setupExam(tab, BONE_LABELS, NUM_BONE, [](int, QFormLayout*, QFormLayout*) { }, data);
+void FeetExam::setupBoneStructureExam(QWidget* tab, QVector<QComboBox*>& right, QVector<QComboBox*>& left, std::vector<int>* data ) {
+    setupExam(tab, right, left, BONE_LABELS, NUM_BONE, [](int, QFormLayout*, QFormLayout*) { }, data);
     }
 
-void FeetExam::setupVascularExam(QWidget* tab, std::vector<int>* data) {
-    setupExam(tab, VASCULAR_LABELS, NUM_VASCULAR, [](int, QFormLayout*, QFormLayout*) { }, data);
+void FeetExam::setupVascularExam(QWidget* tab, QVector<QComboBox*>& right, QVector<QComboBox*>& left, std::vector<int>* data) {
+    setupExam(tab, right, left, VASCULAR_LABELS, NUM_VASCULAR, [](int, QFormLayout*, QFormLayout*) { }, data);
     }
 
-void FeetExam::setupNeurologicalExam(QWidget* tab, std::vector<int>* data) {
-    setupExam(tab, NEUROLOGICAL_LABELS, NUM_NEURO, [](int, QFormLayout*, QFormLayout*) { }, data);
+void FeetExam::setupNeurologicalExam(QWidget* tab, QVector<QComboBox*>& right, QVector<QComboBox*>& left, std::vector<int>* data) {
+    setupExam(tab, right, left, NEUROLOGICAL_LABELS, NUM_NEURO, [](int, QFormLayout*, QFormLayout*) { }, data);
     }

@@ -2,11 +2,10 @@
 
 Foot::Foot( int oId ) :
     ownerId(oId) {
-    //dermatologicalValues.reserve(Foot::NUMBER_OF_ATTRIBUTES - 1);
     }
 
 Foot::~Foot() {
-    dermatologicalValues.clear();
+    examValues.clear();
     }
 
 void Foot::setId( int _id ) {
@@ -17,8 +16,11 @@ void Foot::setOwnerId( int _oId ) {
     ownerId = _oId;
     }
 
-void Foot::setDermatologicalValue( int val, int index ) {
-    dermatologicalValues[index] = val;
+void Foot::setExamValue( int val, int index ) {
+    if (index < examValues.size())
+        examValues[index] = val;
+    else
+        examValues.push_back(val);
     }
 
 int Foot::getId() const {
@@ -29,10 +31,10 @@ int Foot::getOwnerId() const {
     return ownerId;
     }
 
-int Foot::getDermatologicalValue( FeetExam::Dermatological index ) {
-    return dermatologicalValues.at(index);
+int Foot::getExamValue( int index ) {
+    return examValues.at(index);
     }
 
 void Foot::insertDermatologicalValue( int val ) {
-    dermatologicalValues.push_back( val );
+    examValues.push_back( val );
     }

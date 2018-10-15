@@ -2,15 +2,13 @@
 #define DATABASE_H
 
 #include <QString>
+#include <QVector>
+#include <vector>
 
 // La intención es que la base de datos sea lo más modular posible para que se pueda migrar de ser necesario
 #include "qsqlite.h"
 #include "patient.h"
 #include "feetexam.h"
-
-/*class QSQLite;
-class Patient;
-class Foot;*/
 
 class Database {
     private:
@@ -24,6 +22,7 @@ class Database {
         static void closeDatabase();
 
         static int getNumberOfPatients();
+        static int getNumberOfFeet();
 
         static bool insertPatient( Patient& );
         static bool insertFoot( Foot& );

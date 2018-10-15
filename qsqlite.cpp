@@ -68,7 +68,7 @@ bool QSQLite::createPatientTable() {
     bool success = false;
     QSqlQuery query;
 
-    query.prepare( "CREATE TABLE IF NOT EXISTS Paciente ("
+    query.prepare( "CREATE TABLE IF NOT EXISTS paciente ("
                    "id INTEGER PRIMARY KEY,"
                    "file_num INTEGER,"
                    "name VARCHAR(50),"
@@ -90,23 +90,39 @@ bool QSQLite::createFootTable() {
     bool success = false;
     QSqlQuery query;
 
-    query.prepare( "CREATE TABLE IF NOT EXISTS Pie ("
+    query.prepare( "CREATE TABLE IF NOT EXISTS pie ("
                    "id INTEGER PRIMARY KEY,"
                    "owner_id INTEGER,"
-                   "plantar_grade INTEGER,"
-                   "dorsal_grade INTEGER,"
-                   "talar_grade INTEGER,"
-                   "onychocryptosis_grade INTEGER,"
-                   "onychomycosis_grade INTEGER,"
-                   "onychogeilosis_grade INTEGER,"
-                   "bullosis_grade INTEGER,"
-                   "ulcer_grade INTEGER,"
-                   "necrosis_grade INTEGER,"
-                   "cAndF_grade INTEGER,"
-                   "injury_grade INTEGER,"
-                   "anhidrosis_grade INTEGER,"
-                   "tilias_grade INTEGER,"
-                   "infectiveProcess_grade INTEGER,"
+                   "plantar INTEGER,"
+                   "dorsal INTEGER,"
+                   "talar INTEGER,"
+                   "onychocryptosis INTEGER,"
+                   "onychomycosis INTEGER,"
+                   "onychogyphosis INTEGER,"
+                   "bullosis INTEGER,"
+                   "ulcer INTEGER,"
+                   "necrosis INTEGER,"
+                   "cracks_and_fissures INTEGER,"
+                   "superficial_injury INTEGER,"
+                   "anhidrosis INTEGER,"
+                   "tilias INTEGER,"
+                   "infective_process INTEGER,"
+                   "claw_fingers INTEGER,"
+                   "hallux_valgus INTEGER,"
+                   "hammer_toes INTEGER,"
+                   "infraduct INTEGER,"
+                   "supraduct INTEGER,"
+                   "metatarsal INTEGER,"
+                   "charcot INTEGER,"
+                   "pedio INTEGER,"
+                   "capillary INTEGER,"
+                   "varicose INTEGER,"
+                   "edema INTEGER,"
+                   "tactile INTEGER,"
+                   "vibratory INTEGER,"
+                   "reflex INTEGER,"
+                   "dorsiflexion INTEGER,"
+                   "ortejos INTEGER,"
                    "FOREIGN KEY (owner_id) REFERENCES Paciente(id)"
                    ");" );
 
@@ -122,7 +138,7 @@ bool QSQLite::insertPatient( int fileNum, QString name, int age, QString genre, 
     QSqlQuery query;
 
     if ( db.isOpen() ) {
-        query.prepare( QString("INSERT INTO Paciente VALUES(NULL, %1, '%2', %3, '%4', '%5', '%6', '%7');")
+        query.prepare( QString("INSERT INTO paciente VALUES(NULL, %1, '%2', %3, '%4', '%5', '%6', '%7');")
                        .arg(fileNum).arg(name).arg(age).arg(genre).arg(patology).arg(date).arg(imgPath) );
 
         if ( !( success = query.exec() ) ) {
@@ -133,17 +149,17 @@ bool QSQLite::insertPatient( int fileNum, QString name, int age, QString genre, 
     return success;
     }
 
-bool QSQLite::insertFoot( int ownerId, int pG, int dG, int tG, int onychocryptG, int onychomyG, int onychogeG,
-                          int bG, int uG, int nG, int cFG, int iG, int aG, int tiG, int iPG ) {
+bool QSQLite::insertFoot( int ownerId, QVector<unsigned int> attribs ) {
     bool success;
     QSqlQuery query;
+    QString queryString = "INSERT INTO pie VALUES(NULL," + QString::number(ownerId) + ",";
+
+    for ( unsigned int i = 0; i < attribs.length(); ++i ) {
+        queryString += QString::number(attribs[i]) + (i + 1 != attribs.length() ? "," : ");");
+        }
 
     if ( db.isOpen() ) {
-        query.prepare( QString( "INSERT INTO Pie VALUES(NULL, %1, %2, %3, %4, %5, %6, %7, %8,"
-                               "%9, %10, %11, %12, %13, %14, %15);" )
-                                .arg(ownerId).arg(pG).arg(dG).arg(tG).arg(onychocryptG)
-                                .arg(onychomyG).arg(onychogeG).arg(bG).arg(uG).arg(nG)
-                                .arg(cFG).arg(iG).arg(aG).arg(tiG).arg(iPG) );
+        query.prepare( queryString );
 
         if ( !( success = query.exec() ) ) {
             qDebug() << query.lastError();

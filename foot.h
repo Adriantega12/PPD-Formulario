@@ -12,7 +12,7 @@ class Foot {
     private:
         int id;
         int ownerId;
-        std::vector<int> dermatologicalValues;
+        std::vector<int> examValues;
 
     public:
         Foot( int );
@@ -20,11 +20,11 @@ class Foot {
 
         void setId( int );
         void setOwnerId( int );
-        void setDermatologicalValue( int, int );
+        void setExamValue( int, int );
 
         int getId() const;
         int getOwnerId() const;
-        int getDermatologicalValue( FeetExam::Dermatological );
+        int getExamValue( int );
 
         void insertDermatologicalValue( int );
     };

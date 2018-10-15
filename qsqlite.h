@@ -32,7 +32,7 @@ class QSQLite {
 
         // Operaciones básicas
         bool insertPatient( int, QString, int, QString, QString, QString, QString );
-        bool insertFoot( int, int, int, int, int, int, int, int, int, int, int, int, int, int, int );
+        bool insertFoot(int, QVector<unsigned int>);
 
         // Consultas
         Patient* getPatientById( int );

@@ -24,36 +24,15 @@ void MainWindow::setupPatientInfoLayout() {
     layout->addWidget( ui->visitDE, 3, 5, 1, 2 );
     }
 
-void MainWindow::setupDermatologicalExamLayout() {
-    //QFormLayout* leftLO = ui->leftFootLO;
-    //QFormLayout* rightLO = ui->rightFootLO;
+void MainWindow::setupExamLayout() {
     QStringList items = (QStringList() << "0" << "1" << "2");
     QComboBox* cbL;
     QComboBox* cbR;
 
-    /*for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
-        cbL = cbR = nullptr;
-
-        cbR = new QComboBox();
-        cbL = new QComboBox();
-        cbR->addItems(items);
-        cbL->addItems(items);
-        rightFoot.push_back( cbR );
-        leftFoot.push_back( cbL );
-
-        rightLO->addRow( new QLabel(Foot::LABEL[i]), cbR );
-        leftLO->addRow( new QLabel(Foot::LABEL[i]), cbL );
-
-        if ( i == Foot::SUPERFICIAL_INJURY ) {
-            rightLO->addRow( new QLabel("Otras difusas:") );
-            leftLO->addRow( new QLabel("Otras difusas:") );
-            }
-        }*/
-
-    FeetExam::setupDermatologicalExam( ui->dermatologicalTab );
-    FeetExam::setupBoneStructureExam( ui->boneTab );
-    FeetExam::setupVascularExam( ui->vascularTab );
-    FeetExam::setupNeurologicalExam( ui->neurologicalTab );
+    FeetExam::setupDermatologicalExam(ui->dermatologicalTab, rightFoot, leftFoot);
+    FeetExam::setupBoneStructureExam(ui->boneTab, rightFoot, leftFoot);
+    FeetExam::setupVascularExam(ui->vascularTab, rightFoot, leftFoot);
+    FeetExam::setupNeurologicalExam(ui->neurologicalTab, rightFoot, leftFoot);
     }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -61,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow) {
     ui->setupUi(this);
     setupPatientInfoLayout();
-    setupDermatologicalExamLayout();
+    setupExamLayout();
     ui->visitDE->setDate(QDate::currentDate());
     }
 
@@ -88,22 +67,21 @@ void MainWindow::on_actionGuardar_triggered() {
                ui->patologyLE->text(),
                ui->visitDE->text(),
                filePath
-                );
+               );
     Foot left(p.getId()), right(p.getId());
 
-    /*for ( int i = 0; i < Foot::NUMBER_OF_ATTRIBUTES; ++i ) {
-        left.insertDermatologicalValue( leftFoot[i]->currentIndex() );
-        right.insertDermatologicalValue( rightFoot[i]->currentIndex() );
-        }*/
+    for (int i = 0; i < FeetExam::TOTAL_ATTRIBS; ++i) {
+        right.setExamValue(rightFoot[i]->currentText().toInt(), i);
+        left.setExamValue(rightFoot[i]->currentText().toInt(), i);
+        }
 
-    Database::insertPatient( p );
-    Database::insertFoot( right );
-    Database::insertFoot( left );
+    Database::insertPatient(p);
+    Database::insertFoot(right);
+    Database::insertFoot(left);
 
     QMessageBox mb;
-    mb.setText( "El paciente ha sido guardado correctamente." );
+    mb.setText("El paciente ha sido guardado correctamente.");
     mb.exec();
-
     }
 
 void MainWindow::on_actionImagen_triggered() {

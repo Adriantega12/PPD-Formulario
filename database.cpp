@@ -20,6 +20,10 @@ int Database::getNumberOfPatients() {
     return Database::db.getNumberOfPatients();
     }
 
+int Database::getNumberOfFeet() {
+    return 1;//Database::db.getNumberOfFeet();
+    }
+
 bool Database::insertPatient( Patient& p ) {
     bool success =Database::db.insertPatient( p.getFileNum(), p.getName(), p.getAge(), p.getGender(), p.getPatology(),
                                              p.getDate(), p.getImgPath() );
@@ -27,21 +31,14 @@ bool Database::insertPatient( Patient& p ) {
     }
 
 bool  Database::insertFoot( Foot& f ) {
-    bool success = Database::db.insertFoot( f.getOwnerId(),
-                                            f.getDermatologicalValue( FeetExam::PLANTAR ),
-                                            f.getDermatologicalValue( FeetExam::DORSAL ),
-                                            f.getDermatologicalValue( FeetExam::TALAR ),
-                                            f.getDermatologicalValue( FeetExam::ONYCHOCRYPTOSIS ),
-                                            f.getDermatologicalValue( FeetExam::ONYCHOMYCOSIS ),
-                                            f.getDermatologicalValue( FeetExam::ONYCHOGYPHOSIS ),
-                                            f.getDermatologicalValue( FeetExam::BULLOSIS ),
-                                            f.getDermatologicalValue( FeetExam::ULCER ),
-                                            f.getDermatologicalValue( FeetExam::NECROSIS ),
-                                            f.getDermatologicalValue( FeetExam::CRACKS_AND_FISSURES ),
-                                            f.getDermatologicalValue( FeetExam::SUPERFICIAL_INJURY ),
-                                            f.getDermatologicalValue( FeetExam::ANHIDROSIS ),
-                                            f.getDermatologicalValue( FeetExam::TILIAS ),
-                                            f.getDermatologicalValue( FeetExam::INFECTIVE_PROCESS ));
+    QVector<unsigned int> values;
+    bool success;
+
+    for (int i = 0; i < FeetExam::TOTAL_ATTRIBS; ++i) {
+        values.push_back(f.getExamValue(i));
+        }
+
+    success = Database::db.insertFoot(f.getOwnerId(), values);
 
     return success;
     }
