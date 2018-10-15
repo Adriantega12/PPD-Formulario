@@ -33,6 +33,16 @@ void MainWindow::setupExamLayout() {
     FeetExam::setupBoneStructureExam(ui->boneTab, rightFoot, leftFoot);
     FeetExam::setupVascularExam(ui->vascularTab, rightFoot, leftFoot);
     FeetExam::setupNeurologicalExam(ui->neurologicalTab, rightFoot, leftFoot);
+}
+
+void MainWindow::loadPatient(int id) {
+    /*Patient* loadedPatient = Database::getPatientById(id);
+    ui->fileNumLE->setText(loadedPatient->getFileNum());
+    ui->nameLE->setText(loadedPatient->getName());
+    ui->ageSB->setValue(loadedPatient->getAge());,
+    ui->genderCB->,
+    ui->patologyLE->text(),
+    ui->visitDE->text()*/
     }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -56,6 +66,7 @@ void MainWindow::on_actionAbrir_triggered() {
     LoadPatientDialog dialog;
     dialog.exec();
     dialog.show();
+    loadPatient(dialog.getSelectedPatientId());
     }
 
 void MainWindow::on_actionGuardar_triggered() {

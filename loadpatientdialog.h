@@ -21,10 +21,17 @@ class LoadPatientDialog : public QDialog {
 
         void setupPatientListView();
 
+        int getSelectedPatientId();
+
+
+    private slots:
+        void on_buttonBox_accepted();
 
     private:
         Ui::LoadPatientDialog *ui;
         std::vector<Patient*> patients;
+
+        int selectedId;
     };
 
 #endif // LOADPATIENTDIALOG_H

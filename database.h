@@ -29,6 +29,7 @@ class Database {
 
         static Patient* getPatientById( int );
         static Patient* getPatientByFileNumber( int );
+        static std::vector<Foot*> getFeetByPatientId( int );
         static std::vector<Patient*> getAllPatients();
     };
 

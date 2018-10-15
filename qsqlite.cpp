@@ -173,7 +173,7 @@ Patient* QSQLite::getPatientById( int id ) {
     Patient* patientPtr = nullptr;
     QSqlQuery query;
 
-    query.prepare(QString("SELECT * FROM Paciente WHERE id = %1").arg(id));
+    query.prepare(QString("SELECT * FROM paciente WHERE id = %1").arg(id));
 
     if ( query.exec() ) {
 
@@ -195,6 +195,29 @@ Patient* QSQLite::getPatientById( int id ) {
 
 Patient* QSQLite::getPatientByFileNumber( int ) {
     return nullptr;
+    }
+
+std::vector<Foot*> QSQLite::getFeetByPatientId( int patientId ) {
+    std::vector<Foot*> feet;
+    Foot* footPtr = nullptr;
+    QString queryString = "SELECT * FROM pie WHERE owner_id = %1;";
+    qDebug() << queryString.arg(patientId);
+    QSqlQuery query(queryString);
+
+    qDebug() << query.size();
+
+    //query.prepare(QString("SELECT * FROM pie WHERE owner_id = %1").arg(patientId));
+    if (query.exec())
+        while ( query.next() ) {
+            footPtr = new Foot(patientId);
+            footPtr->setId( query.value("id").toInt() );
+            for (int i = 2; i < FeetExam::TOTAL_ATTRIBS + 2; ++i) {
+                footPtr->setExamValue(query.value(i).toInt(), i - 2);
+                }
+            feet.push_back(footPtr);
+            }
+
+    return feet;
     }
 
 std::vector<Patient*> QSQLite::getAllPatients() {

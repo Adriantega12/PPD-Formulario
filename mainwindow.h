@@ -33,10 +33,13 @@ class MainWindow : public QMainWindow {
 
         QString filePath;
 
+        void loadPatient(int);
+
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
-private slots:
+
+    private slots:
         void on_actionNuevo_triggered();
         void on_actionAbrir_triggered();
         void on_actionGuardar_triggered();

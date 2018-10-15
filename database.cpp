@@ -51,6 +51,10 @@ Patient* Database::getPatientByFileNumber( int num ) {
     return nullptr;
     }
 
+std::vector<Foot*> Database::getFeetByPatientId(int id) {
+    return Database::db.getFeetByPatientId(id);
+    }
+
 std::vector<Patient*> Database::getAllPatients() {
     return Database::db.getAllPatients();
     }

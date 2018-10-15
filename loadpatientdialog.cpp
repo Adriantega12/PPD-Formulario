@@ -23,5 +23,13 @@ void LoadPatientDialog::setupPatientListView() {
         ui->patientLW->addItem( QString( QString::number((*p)->getId()) + " " +
                                          QString::number( (*p)->getFileNum() ) + " " +
                                          (*p)->getName() ) );
-        }
+    }
+}
+
+int LoadPatientDialog::getSelectedPatientId() {
+    return selectedId;
+    }
+
+void LoadPatientDialog::on_buttonBox_accepted() {
+    selectedId = ui->patientLW->currentRow() + 1;
     }
