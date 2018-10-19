@@ -117,12 +117,18 @@ void MainWindow::on_actionGuardar_triggered() {
 
     for (int i = 0; i < FeetExam::TOTAL_ATTRIBS; ++i) {
         right.setExamValue(rightFoot[i]->currentText().toInt(), i);
-        left.setExamValue(rightFoot[i]->currentText().toInt(), i);
+        left.setExamValue(leftFoot[i]->currentText().toInt(), i);
         }
 
-    Database::insertPatient(p);
-    Database::insertFoot(right);
-    Database::insertFoot(left);
+
+    try {
+        Database::insertPatient(p);
+        Database::insertFoot(right);
+        Database::insertFoot(left);
+        }
+    catch (const char* msg) {
+        qDebug() << msg;
+        }
 
     QMessageBox mb;
     mb.setText("El paciente ha sido guardado correctamente.");
