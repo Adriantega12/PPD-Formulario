@@ -33,7 +33,8 @@ class MainWindow : public QMainWindow {
 
         QString filePath;
 
-        void loadPatient(int);
+        void loadPatient(int patientId);
+        void loadFeetImage(QString path);
 
     public:
         explicit MainWindow(QWidget *parent = 0);

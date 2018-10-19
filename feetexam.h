@@ -77,8 +77,6 @@ class FeetExam {
         static const QString VASCULAR_LABELS[NUM_VASCULAR];
         static const QString NEUROLOGICAL_LABELS[NUM_NEURO];
 
-        //static const QString LABELS[TOTAL_ATTRIBS]:
-
         FeetExam();
 
         static void setupDermatologicalExam( QWidget*, QVector<QComboBox*>&, QVector<QComboBox*>&, std::vector<int>* = nullptr );

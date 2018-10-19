@@ -200,14 +200,13 @@ Patient* QSQLite::getPatientByFileNumber( int ) {
 std::vector<Foot*> QSQLite::getFeetByPatientId( int patientId ) {
     std::vector<Foot*> feet;
     Foot* footPtr = nullptr;
-    QString queryString = "SELECT * FROM pie WHERE owner_id = %1;";
-    qDebug() << queryString.arg(patientId);
-    QSqlQuery query(queryString);
+    QSqlQuery query;
 
-    qDebug() << query.size();
+    if (query.prepare(QString("SELECT * FROM pie WHERE owner_id = %1;").arg(patientId))) {
+        qDebug() << "Success";
+        }
 
-    //query.prepare(QString("SELECT * FROM pie WHERE owner_id = %1").arg(patientId));
-    if (query.exec())
+    if (query.exec()) {
         while ( query.next() ) {
             footPtr = new Foot(patientId);
             footPtr->setId( query.value("id").toInt() );
@@ -216,6 +215,7 @@ std::vector<Foot*> QSQLite::getFeetByPatientId( int patientId ) {
                 }
             feet.push_back(footPtr);
             }
+        }
 
     return feet;
     }

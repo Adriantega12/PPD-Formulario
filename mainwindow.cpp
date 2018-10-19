@@ -35,14 +35,48 @@ void MainWindow::setupExamLayout() {
     FeetExam::setupNeurologicalExam(ui->neurologicalTab, rightFoot, leftFoot);
 }
 
-void MainWindow::loadPatient(int id) {
-    /*Patient* loadedPatient = Database::getPatientById(id);
-    ui->fileNumLE->setText(loadedPatient->getFileNum());
+void MainWindow::loadPatient(int patientId) {
+    const int RIGHT_FOOT = 0;
+    const int LEFT_FOOT = 1;
+
+    Patient* loadedPatient = Database::getPatientById(patientId);
+    std::vector<Foot*> loadedFeet = Database::getFeetByPatientId(patientId);
+
+    // Load patient info
+    ui->fileNumLE->setText(QString::number(loadedPatient->getFileNum()));
     ui->nameLE->setText(loadedPatient->getName());
-    ui->ageSB->setValue(loadedPatient->getAge());,
-    ui->genderCB->,
-    ui->patologyLE->text(),
-    ui->visitDE->text()*/
+    ui->ageSB->setValue(loadedPatient->getAge());
+    ui->genderCB->setCurrentIndex(ui->genderCB->findText(loadedPatient->getGender()));
+    ui->patologyLE->setText(loadedPatient->getPatology());
+    ui->visitDE->setDate(QDate::fromString(loadedPatient->getDate()));
+
+    // Load feet info
+    for (int i = 0; i < FeetExam::TOTAL_ATTRIBS; ++i) {
+        rightFoot[i]->setCurrentIndex(loadedFeet[RIGHT_FOOT]->getExamValue(i));
+        leftFoot[i]->setCurrentIndex(loadedFeet[LEFT_FOOT]->getExamValue(i));
+    }
+
+    // Load graphics
+    loadFeetImage(loadedPatient->getImgPath());
+
+    // Cleanup
+    delete loadedPatient;
+    delete loadedFeet[RIGHT_FOOT];
+    delete loadedFeet[LEFT_FOOT];
+}
+
+void MainWindow::loadFeetImage(QString path) {
+    QStringList args = (QStringList() << path << "-s");
+    QProcess* algorithm = new QProcess(this);
+    algorithm->startDetached( "./IP-Module-PPD", args );
+    QImage left( "./left.jpg" ), right( "./right.jpg" );
+    QGraphicsScene* lScene = new QGraphicsScene(),
+                    *rScene = new QGraphicsScene();
+    lScene->addPixmap(QPixmap::fromImage(left));
+    rScene->addPixmap(QPixmap::fromImage(right));
+    // NO OLVIDES QUE ESTÁN AL REVÉS
+    ui->leftFootGV->setScene(rScene);
+    ui->rightFootGV->setScene(lScene);
     }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -97,16 +131,5 @@ void MainWindow::on_actionGuardar_triggered() {
 
 void MainWindow::on_actionImagen_triggered() {
     filePath = QFileDialog::getOpenFileName( this, QString("Buscar imagen"), QDir::homePath() );
-
-    QStringList args = (QStringList() << filePath << "-s");
-    QProcess* algorithm = new QProcess(this);
-    algorithm->startDetached( "./IP-Module-PPD", args );
-    QImage left( "./left.jpg" ), right( "./right.jpg" );
-    QGraphicsScene* lScene = new QGraphicsScene(),
-                    *rScene = new QGraphicsScene();
-    lScene->addPixmap(QPixmap::fromImage(left));
-    rScene->addPixmap(QPixmap::fromImage(right));
-    // NO OLVIDES QUE ESTÁN AL REVÉS
-    ui->leftFootGV->setScene(rScene);
-    ui->rightFootGV->setScene(lScene);
+    loadFeetImage(filePath);
     }
