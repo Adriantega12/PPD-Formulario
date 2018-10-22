@@ -12,6 +12,8 @@ FootDialog::~FootDialog() {
     }
 
 void FootDialog::setup(QGraphicsScene* gs, QString label) {
+    std::vector<int> pixelCount;
+    int count, totalCount = 0;
     ui->footGV->setScene(gs);
 
     std::string fileName;
@@ -26,7 +28,14 @@ void FootDialog::setup(QGraphicsScene* gs, QString label) {
     double percent;
     QString labelValue;
 
+    // Percent
     file >> percent;
+
+    // Pixel count
+    while (file >> count) {
+        pixelCount.push_back(count);
+        totalCount += count;
+        }
 
     if ( percent < 35.0 ) {
         labelValue = "Plano";
@@ -52,4 +61,17 @@ void FootDialog::setup(QGraphicsScene* gs, QString label) {
 
     ui->footTypeVal->setText(labelValue);
     ui->percentVal->setText(QString::number(percent));
+
+    // Scale colors
+    QImage scale("./scale.jpg");
+    QGraphicsScene* scaleScene = new QGraphicsScene();
+    scaleScene->addPixmap(QPixmap::fromImage(scale));
+    ui->thermalScaleGV->setScene(scaleScene);
+
+    QLabel* lbl;
+    for ( unsigned int i = 0; i < pixelCount.size(); ++i) {
+        lbl = new QLabel(QString::number(pixelCount[i] * 100.0 / totalCount, 'g', 3) + "%", this);
+        lbl->move( ui->thermalScaleGV->x() + ui->thermalScaleGV->width() + 20,
+                   ui->thermalScaleGV->y() + i * ( (ui->thermalScaleGV->height() - 15 ) / pixelCount.size() ) + 20 );
+        }
     }
