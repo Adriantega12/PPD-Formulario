@@ -5,6 +5,8 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 
+#include <fstream>
+
 namespace Ui {
     class FootDialog;
     }
@@ -16,7 +18,7 @@ class FootDialog : public QDialog {
         explicit FootDialog(QWidget *parent = 0);
         ~FootDialog();
 
-        void setup(QGraphicsScene*);
+        void setup(QGraphicsScene* gs, QString label);
 
     private:
         Ui::FootDialog *ui;

@@ -18,7 +18,7 @@ void CustomGView::setLabel(QString l) {
 
 void CustomGView::mousePressEvent(QMouseEvent *e) {
     FootDialog fd;
-    fd.setup(scene);
+    fd.setup(scene, label);
     fd.exec();
     fd.show();
     }
