@@ -97,7 +97,7 @@
     <item>
      <layout class="QHBoxLayout" name="feetFormLO">
       <item>
-       <widget class="CustomGView" name="leftFootGV"/>
+       <widget class="CustomGView" name="rightFootGV"/>
       </item>
       <item>
        <widget class="QTabWidget" name="examTabs">
@@ -127,7 +127,7 @@
        </widget>
       </item>
       <item>
-       <widget class="CustomGView" name="rightFootGV"/>
+       <widget class="CustomGView" name="leftFootGV"/>
       </item>
      </layout>
     </item>
@@ -204,8 +204,8 @@
   <tabstop>genderCB</tabstop>
   <tabstop>patologyLE</tabstop>
   <tabstop>visitDE</tabstop>
-  <tabstop>leftFootGV</tabstop>
   <tabstop>rightFootGV</tabstop>
+  <tabstop>leftFootGV</tabstop>
  </tabstops>
  <resources/>
  <connections/>

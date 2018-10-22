@@ -75,11 +75,13 @@ void MainWindow::loadFeetImage(QString path) {
                     *rScene = new QGraphicsScene();
     lScene->addPixmap(QPixmap::fromImage(left));
     rScene->addPixmap(QPixmap::fromImage(right));
-    // NO OLVIDES QUE ESTÁN AL REVÉS
-    ui->leftFootGV->setScene(rScene);
-    ui->leftFootGV->updateScene(rScene);
-    ui->rightFootGV->setScene(lScene);
-    ui->rightFootGV->updateScene(lScene);
+
+    ui->rightFootGV->setScene(rScene);
+    ui->leftFootGV->setScene(lScene);
+    ui->rightFootGV->updateScene(rScene);
+    ui->leftFootGV->updateScene(lScene);
+    ui->rightFootGV->setLabel("right");
+    ui->leftFootGV->setLabel("left");
     }
 
 MainWindow::MainWindow(QWidget *parent) :

@@ -12,6 +12,10 @@ void CustomGView::updateScene(QGraphicsScene* gs) {
     scene = gs;
     }
 
+void CustomGView::setLabel(QString l) {
+    label = l;
+    }
+
 void CustomGView::mousePressEvent(QMouseEvent *e) {
     FootDialog fd;
     fd.setup(scene);

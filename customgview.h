@@ -9,12 +9,14 @@
 class CustomGView : public QGraphicsView {
     private:
         QGraphicsScene* scene;
+        QString label;
 
     public:
         explicit CustomGView( QWidget* parent = nullptr, qreal x = 0.0, qreal y = 0.0, qreal w = 0.0, qreal h = 0.0 );
         ~CustomGView();
 
         void updateScene(QGraphicsScene*);
+        void setLabel(QString);
 
     signals:
         public slots:
