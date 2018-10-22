@@ -8,6 +8,13 @@ CustomGView::CustomGView(QWidget *parent, qreal x, qreal y, qreal w, qreal h)
 
 CustomGView::~CustomGView() { }
 
-void CustomGView::mousePressEvent(QMouseEvent *e) {
+void CustomGView::updateScene(QGraphicsScene* gs) {
+    scene = gs;
+    }
 
+void CustomGView::mousePressEvent(QMouseEvent *e) {
+    FootDialog fd;
+    fd.setup(scene);
+    fd.exec();
+    fd.show();
     }

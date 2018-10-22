@@ -4,6 +4,8 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 
+#include "footdialog.h"
+
 class CustomGView : public QGraphicsView {
     private:
         QGraphicsScene* scene;
@@ -11,6 +13,8 @@ class CustomGView : public QGraphicsView {
     public:
         explicit CustomGView( QWidget* parent = nullptr, qreal x = 0.0, qreal y = 0.0, qreal w = 0.0, qreal h = 0.0 );
         ~CustomGView();
+
+        void updateScene(QGraphicsScene*);
 
     signals:
         public slots:

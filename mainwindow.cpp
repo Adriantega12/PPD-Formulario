@@ -66,7 +66,7 @@ void MainWindow::loadPatient(int patientId) {
 }
 
 void MainWindow::loadFeetImage(QString path) {
-    QStringList args = (QStringList() << path << "-s");
+    QStringList args = (QStringList() << path << "-s" << "-hc");
     /*QProcess* algorithm = new QProcess(this);
     algorithm->startDetached( "./IP-Module-PPD", args );*/
     QProcess::execute( "./IP-Module-PPD", args );
@@ -77,7 +77,9 @@ void MainWindow::loadFeetImage(QString path) {
     rScene->addPixmap(QPixmap::fromImage(right));
     // NO OLVIDES QUE ESTÁN AL REVÉS
     ui->leftFootGV->setScene(rScene);
+    ui->leftFootGV->updateScene(rScene);
     ui->rightFootGV->setScene(lScene);
+    ui->rightFootGV->updateScene(lScene);
     }
 
 MainWindow::MainWindow(QWidget *parent) :
