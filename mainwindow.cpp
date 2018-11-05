@@ -67,8 +67,6 @@ void MainWindow::loadPatient(int patientId) {
 
 void MainWindow::loadFeetImage(QString path) {
     QStringList args = (QStringList() << path << "-s" << "-hc");
-    /*QProcess* algorithm = new QProcess(this);
-    algorithm->startDetached( "./IP-Module-PPD", args );*/
     QProcess::execute( "./IP-Module-PPD", args );
     QImage left( "./left.jpg" ), right( "./right.jpg" );
     QGraphicsScene* lScene = new QGraphicsScene(),
@@ -82,6 +80,8 @@ void MainWindow::loadFeetImage(QString path) {
     ui->leftFootGV->updateScene(lScene);
     ui->rightFootGV->setLabel("right");
     ui->leftFootGV->setLabel("left");
+    ui->rightFootGV->setPath(path);
+    ui->leftFootGV->setPath(path);
     }
 
 MainWindow::MainWindow(QWidget *parent) :

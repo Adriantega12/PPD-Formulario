@@ -14,11 +14,15 @@ void CustomGView::updateScene(QGraphicsScene* gs) {
 
 void CustomGView::setLabel(QString l) {
     label = l;
+}
+
+void CustomGView::setPath(QString filePath){
+    path = filePath;
     }
 
 void CustomGView::mousePressEvent(QMouseEvent *e) {
     FootDialog fd;
-    fd.setup(scene, label);
+    fd.setup(scene, label, path);
     fd.exec();
     fd.show();
     }
