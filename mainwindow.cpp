@@ -105,7 +105,9 @@ void MainWindow::on_actionAbrir_triggered() {
     LoadPatientDialog dialog;
     dialog.exec();
     dialog.show();
-    loadPatient(dialog.getSelectedPatientId());
+    if (dialog.getSelectedPatientId() > 0) {
+        loadPatient(dialog.getSelectedPatientId());
+        }
     }
 
 void MainWindow::on_actionGuardar_triggered() {

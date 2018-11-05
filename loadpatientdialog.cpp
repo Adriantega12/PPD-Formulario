@@ -3,7 +3,8 @@
 
 LoadPatientDialog::LoadPatientDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::LoadPatientDialog) {
+    ui(new Ui::LoadPatientDialog),
+    selectedId(-1) {
     ui->setupUi(this);
     setupPatientListView();
     }
