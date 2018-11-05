@@ -3,7 +3,8 @@
 
 FootDialog::FootDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::FootDialog) {
+    ui(new Ui::FootDialog),
+    angle(0) {
     ui->setupUi(this);
     }
 
@@ -74,4 +75,11 @@ void FootDialog::setup(QGraphicsScene* gs, QString label) {
         lbl->move( ui->thermalScaleGV->x() + ui->thermalScaleGV->width() + 20,
                    ui->thermalScaleGV->y() + i * ( (ui->thermalScaleGV->height() - 15 ) / pixelCount.size() ) + 20 );
         }
+    }
+
+void FootDialog::on_angleSlider_sliderMoved(int position) {
+    ui->footGV->rotate(qreal(position - angle));
+
+    angle = position;
+    ui->angleVal->setText(QString::number(angle) + "º");
     }

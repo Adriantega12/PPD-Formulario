@@ -14,14 +14,17 @@ namespace Ui {
 class FootDialog : public QDialog {
     Q_OBJECT
 
+    private:
+        Ui::FootDialog *ui;
+        int angle;
+
     public:
         explicit FootDialog(QWidget *parent = 0);
         ~FootDialog();
 
         void setup(QGraphicsScene* gs, QString label);
-
-    private:
-        Ui::FootDialog *ui;
-    };
+private slots:
+        void on_angleSlider_sliderMoved(int position);
+};
 
 #endif // FOOTDIALOG_H
